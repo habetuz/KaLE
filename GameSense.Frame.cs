@@ -37,6 +37,19 @@ namespace GameSense
         /// Sets a color in the <see cref="Bitmap"/> at the index.
         /// </summary>
         /// <param name="index">The index of the <see cref="Bitmap"/></param>
+        /// <param name="r">The red channel value</param>
+        /// <param name="g">The green channel value</param>
+        /// <param name="b">The blue channel value</param>
+        /// <returns>it self</returns>
+        public Frame SetColor(int index, int r, int g, int b)
+        {
+            return this.SetColor(index, new int[] { r, g, b });
+        }
+
+        /// <summary>
+        /// Sets a color in the <see cref="Bitmap"/> at the index.
+        /// </summary>
+        /// <param name="index">The index of the <see cref="Bitmap"/></param>
         /// <param name="color">The color to be set (RGB format)</param>
         /// <returns>it self</returns>
         public Frame SetColor(int index, int[] color)

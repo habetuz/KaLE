@@ -12,20 +12,23 @@ namespace KaLE
 {
     using System;
 
+    /// <summary>
+    /// The main class of this project.
+    /// </summary>
     public class Program
     {
-        private static Logger _logger = new Logger
+        private static readonly Logger Logger = new Logger
         {
             Ident = "Main",
         };
 
         private static void Main(string[] args)
         {
-            _logger.Log("Program startet. Welcome.", Logger.Type.Info);
+            Logger.Log("Program started. Welcome.", Logger.Type.Info);
             GameSense.Controller.Start();
-            //InputManager.Start();
+            ////InputManager.Start();
             Console.ReadLine();
-            //InputManager.End();
+            ////InputManager.End();
         }
     }
 }

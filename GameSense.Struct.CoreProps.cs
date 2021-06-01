@@ -1,4 +1,4 @@
-// <copyright file="GameSense.Struct.CoreProps.cs">
+﻿// <copyright file="GameSense.Struct.CoreProps.cs">
 // Copyright (c) 2021. All Rights Reserved
 // </copyright>
 // <author>
@@ -10,8 +10,14 @@
 
 namespace GameSense.Struct
 {
-    public class CoreProps
+    /// <summary>
+    /// <see href="https://github.com/SteelSeries/gamesense-sdk/blob/master/doc/api/sending-game-events.md#server-discovery"/>
+    /// </summary>
+    public struct CoreProps
     {
+        /// <summary>
+        /// Gets or sets the address.
+        /// </summary>
         public string Address { get; set; }
     }
 }

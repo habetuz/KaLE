@@ -81,7 +81,7 @@ namespace GameSense
                 {
                     Game = GameName,
                     Event = "KEYBOARD_BITMAP",
-                    Handlers = new Handler[]
+                    Handler = new Handler[]
                     {
                         new Handler
                         {
@@ -96,7 +96,7 @@ namespace GameSense
             {
                 Game = GameName,
                 Event = "KEYBOARD_BITMAP",
-                Handlers = new Handler[]
+                Handler = new Handler[]
                 {
                     new Handler
                     {

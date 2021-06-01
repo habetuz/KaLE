@@ -1,4 +1,4 @@
-// <copyright file="GameSense.Key.cs">
+﻿// <copyright file="GameSense.Key.cs">
 // Copyright (c) 2021. All Rights Reserved
 // </copyright>
 // <author>
@@ -10,6 +10,9 @@
 
 namespace GameSense
 {
+    /// <summary>
+    /// Keyboard keys and their <see cref="GameSense.Struct.Frame.Bitmap"/> index.
+    /// </summary>
     public enum Key
     {
         Esc = 1,

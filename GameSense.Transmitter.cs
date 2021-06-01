@@ -1,4 +1,4 @@
-// <copyright file="GameSense.Transmitter.cs">
+﻿// <copyright file="GameSense.Transmitter.cs">
 // Copyright (c) 2021. All Rights Reserved
 // </copyright>
 // <author>
@@ -8,91 +8,109 @@
 // Visit https://marvin-fuchs.de for more information
 // </summary>
 
-using GameSense.Struct;
-using KaLE;
-using System;
-using System.Net.Http;
-using System.Text;
-using System.Text.Json;
-
 namespace GameSense
 {
+    using System;
+    using System.Net.Http;
+    using System.Text;
+    using System.Text.Json;
+    using GameSense.Struct;
+    using KaLE;
+
+    /// <summary>
+    /// Class responsible for the communication to the game sense engine.
+    /// </summary>
     public class Transmitter
     {
-        private static readonly Logger _logger = new Logger
+        private static readonly Logger Logger = new Logger
         {
             Ident = "GameSense/Transmitter",
             LogInfo = false,
         };
 
-        private static readonly HttpClient _client = new HttpClient();
+        private static readonly HttpClient Client = new HttpClient();
 
-        private static readonly JsonSerializerOptions _serializeOptions = new JsonSerializerOptions
+        private static readonly JsonSerializerOptions SerializeOptions = new JsonSerializerOptions
         {
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
             WriteIndented = true
         };
 
-        private static readonly string _address;
+        private static readonly string Adress;
 
         static Transmitter()
         {
-            _logger.Log("Starting...", Logger.Type.Info);
+            Logger.Log("Starting...", Logger.Type.Info);
             try
             {
                 string file = System.IO.File.ReadAllText("C:/ProgramData/SteelSeries/SteelSeries Engine 3/coreProps.json");
-                CoreProps coreProps = JsonSerializer.Deserialize<CoreProps>(file, new JsonSerializerOptions
-                {
-                    PropertyNameCaseInsensitive = true
-                });
-                _address = coreProps.Address;
-                _logger.Log("GameSense server is running on " + _address, Logger.Type.Info);
-                _logger.Log("Ready!", Logger.Type.Info);
+                CoreProps coreProps = JsonSerializer.Deserialize<CoreProps>(
+                    file, 
+                    new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    });
+                Adress = coreProps.Address;
+                Logger.Log("GameSense server is running on " + Adress, Logger.Type.Info);
+                Logger.Log("Ready!", Logger.Type.Info);
             }
             catch (Exception ex)
             {
                 if (ex is System.IO.DirectoryNotFoundException || ex is System.IO.FileNotFoundException)
                 {
-                    _logger.Log("coreProps.json could not be found. Maybe the SteelSeries Engine is not running.", Logger.Type.Error);
-                }
+                    Logger.Log("coreProps.json could not be found. Maybe the SteelSeries Engine is not running.", Logger.Type.Error);
+                } 
                 else
                 {
-                    _logger.Log("coreProps.json cannot be deserialized", Logger.Type.Error);
+                    Logger.Log("coreProps.json cannot be deserialized", Logger.Type.Error);
                 }
-                _logger.Log("Error:\n" + ex.ToString(), Logger.Type.Error);
+
+                Logger.Log("Error:\n" + ex.ToString(), Logger.Type.Error);
             }
         }
 
-        public async static void Send(Request request, string endpoint)
+        /// <summary>
+        /// Sends a <see cref="Request"/> to the game sense engine.
+        /// </summary>
+        /// <param name="request">The request to send.</param>
+        /// <param name="endpoint">The endpoint where the request needs to be send.</param>
+        public static async void Send(Request request, string endpoint)
         {
-            //Logger.Log("Data: " + request.Game + " | " + request.Handlers.Length +  " | " + request.Handlers[0].DeviceType);
-            HttpContent payload = new StringContent
-            (
-                JsonSerializer.Serialize<Request>(request, new JsonSerializerOptions
-                {
-                    PropertyNamingPolicy = new GSJsonNamingPolicy(),
-                    WriteIndented = false,
-                }),
-                Encoding.UTF8,
-                "application/json"
-            );
+            Logger.Log("Data: " + request.Game + " | " + request.Handler.Length + " | " + request.Handler[0].DeviceType);
+            HttpContent payload = 
+                new StringContent(
+                    JsonSerializer.Serialize<Request>(
+                        request, 
+                        new JsonSerializerOptions
+                        {
+                            PropertyNamingPolicy = new GSJsonNamingPolicy(),
+                            WriteIndented = false,
+                        }),
+                    Encoding.UTF8,
+                    "application/json");
 
-            //Logger.Log(JsonSerializer.Serialize<Request>(request, new JsonSerializerOptions{PropertyNamingPolicy = new GSJsonNamingPolicy(),WriteIndented = true}));
+            ////Logger.Log(JsonSerializer.Serialize<Request>(request, new JsonSerializerOptions{PropertyNamingPolicy = new GSJsonNamingPolicy(),WriteIndented = true}));
 
             try
             {
-                //Logger.Log("Sending a request to endpoint " + endpoint + "...", Logger.Type.Info);
-                HttpResponseMessage response = await _client.PostAsync("http://" + _address + "/" + endpoint, payload);
+                ////Logger.Log("Sending a request to endpoint " + endpoint + "...", Logger.Type.Info);
+                HttpResponseMessage response = await Client.PostAsync("http://" + Adress + "/" + endpoint, payload);
 
                 Logger.Type type;
-                if (response.IsSuccessStatusCode) type = Logger.Type.Info;
-                else type = Logger.Type.Warning;
+                if (response.IsSuccessStatusCode)
+                {
+                    type = Logger.Type.Info;
+                }
+                else
+                { 
+                    type = Logger.Type.Warning; 
+                }
 
-                _logger.Log("Request to endpoint '" + endpoint + "' received! Status: " + response.StatusCode /*+ " | Content: " + await response.Content.ReadAsStringAsync()*/, type);
+                Logger.Log("Request to endpoint '" + endpoint + "' received! Status: " + response.StatusCode /*+ " | Content: " + await response.Content.ReadAsStringAsync()*/, type);
             }
             catch (Exception ex)
             {
-                _logger.Log("Request to endpoint '" + endpoint + "' failed!\n" + ex.ToString(), Logger.Type.Warning);
+                Logger.Log("Request to endpoint '" + endpoint + "' failed!\n" + ex.ToString(), Logger.Type.Warning);
             }
         }
     }

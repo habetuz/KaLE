@@ -1,4 +1,4 @@
-// <copyright file="GameSense.Struct.Handler.cs">
+﻿// <copyright file="GameSense.Struct.Handler.cs">
 // Copyright (c) 2021. All Rights Reserved
 // </copyright>
 // <author>
@@ -10,9 +10,19 @@
 
 namespace GameSense.Struct
 {
-    public class Handler
+    /// <summary>
+    /// <see href="https://github.com/SteelSeries/gamesense-sdk/blob/master/doc/api/writing-handlers-in-json.md"/>
+    /// </summary>
+    public struct Handler
     {
+        /// <summary>
+        /// Gets or sets the device type.
+        /// </summary>
         public string DeviceType { get; set; }
+
+        /// <summary>
+        /// Gets or sets the device mode.
+        /// </summary>
         public string Mode { get; set; }
     }
 }

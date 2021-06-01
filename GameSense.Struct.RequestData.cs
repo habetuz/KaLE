@@ -1,4 +1,4 @@
-// <copyright file="GameSense.Struct.RequestData.cs">
+﻿// <copyright file="GameSense.Struct.RequestData.cs">
 // Copyright (c) 2021. All Rights Reserved
 // </copyright>
 // <author>
@@ -10,8 +10,14 @@
 
 namespace GameSense.Struct
 {
-    public class RequestData
+    /// <summary>
+    /// <see href="https://github.com/SteelSeries/gamesense-sdk/blob/master/doc/api/json-handlers-full-keyboard-lighting.md"/>
+    /// </summary>
+    public struct RequestData
     {
+        /// <summary>
+        /// Gets or sets the frame
+        /// </summary>
         public Frame Frame { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-// <copyright file="KaLE.InputManager.cs">
+﻿// <copyright file="KaLE.InputManager.cs">
 // Copyright (c) 2021. All Rights Reserved
 // </copyright>
 // <author>
@@ -8,25 +8,23 @@
 // Visit https://marvin-fuchs.de for more information
 // </summary>
 
-using System;
-
 namespace KaLE
 {
+    using System;
+
+    /// <summary>
+    /// Class responsible for managing keyboard and mouse inputs.
+    /// </summary>
     public class InputManager
     {
-        public static void Start()
-        {
-        }
-
-        public static void End()
-        {
-        }
-
         static InputManager()
         {
             Console.WriteLine("InputManager ready!");
         }
 
+        /// <summary>
+        /// Keys and their corresponding scan code.
+        /// </summary>
         private enum ScanCode
         {
             Esc = 1,
@@ -134,6 +132,20 @@ namespace KaLE
             Right = 127,
             NumZero = 129,
             Dot = 130,
+        }
+
+        /// <summary>
+        /// Starts the <see cref="InputManager"/>
+        /// </summary>
+        public static void Start()
+        {
+        }
+
+        /// <summary>
+        /// Ends the <see cref="InputManager"/>. Should be called at the end of the program.
+        /// </summary>
+        public static void End()
+        {
         }
     }
 }

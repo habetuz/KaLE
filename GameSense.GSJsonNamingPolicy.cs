@@ -1,4 +1,4 @@
-// <copyright file="GameSense.GSJsonNamingPolicy.cs">
+﻿// <copyright file="GameSense.GSJsonNamingPolicy.cs">
 // Copyright (c) 2021. All Rights Reserved
 // </copyright>
 // <author>
@@ -8,37 +8,56 @@
 // Visit https://marvin-fuchs.de for more information
 // </summary>
 
-using KaLE;
-using System.Collections.Generic;
-using System.Text.Json;
-
 namespace GameSense
 {
+    using System.Collections.Generic;
+    using System.Text.Json;
+    using KaLE;
+
+    /// <summary>
+    /// A <see cref="System.Text.Json.JsonNamingPolicy"/> for the game sense API.
+    /// </summary>
     public class GSJsonNamingPolicy : JsonNamingPolicy
     {
-        private static readonly Dictionary<string, string> _dotNetGSPairs = new Dictionary<string, string> {
-            {"GameDisplayName", "game_display_name"},
-            {"MinValue", "min_value"},
-            {"MaxValue", "max_value"},
-            {"IconId", "icon_id"},
-            {"ValueOptional", "value_optional"},
-            {"DeviceType", "device-type"},
-        };
+        private static readonly Dictionary<string, string> DotNetGSPairs = 
+            new Dictionary<string, string> 
+            {
+                { "GameDisplayName",    "game_display_name" },
+                { "MinValue",           "min_value" },
+                { "MaxValue",           "max_value" },
+                { "IconId",             "icon_id" },
+                { "ValueOptional",      "value_optional" },
+                { "DeviceType",         "device-type" },
+            };
 
-        private static readonly Logger _logger = new Logger
+        private static readonly Logger Logger = new Logger
         {
             Ident = "GameSense/GSJsonNamingPolicy",
         };
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GSJsonNamingPolicy"/> class.
+        /// </summary>
         public GSJsonNamingPolicy()
         {
         }
 
+        /// <summary>
+        /// Converts the given .net object name to the JSON object name using either <see cref="DotNetGSPairs"/> or <see cref="System.String.ToLower"/>
+        /// </summary>
+        /// <param name="name">the .net object name</param>
+        /// <returns>the to JSON object converted name</returns>
         public override string ConvertName(string name)
         {
-            //Logger.Log("Converting " + name + " to " + _dotNetGSPairs[name]);
-            try { return _dotNetGSPairs[name]; }
-            catch { return name.ToLower(); }
+            Logger.Log("Converting " + name + " to " + DotNetGSPairs[name]);
+            try 
+            { 
+                return DotNetGSPairs[name]; 
+            }
+            catch 
+            { 
+                return name.ToLower(); 
+            }
         }
     }
 }

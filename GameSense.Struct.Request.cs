@@ -1,4 +1,4 @@
-// <copyright file="GameSense.Struct.Request.cs">
+﻿// <copyright file="GameSense.Struct.Request.cs">
 // Copyright (c) 2021. All Rights Reserved
 // </copyright>
 // <author>
@@ -10,17 +10,59 @@
 
 namespace GameSense.Struct
 {
-    public class Request
+    /// <summary>
+    /// <see href="https://github.com/SteelSeries/gamesense-sdk"/>
+    /// </summary>
+    public struct Request
     {
+        /// <summary>
+        /// Gets or sets the game-name.
+        /// </summary>
         public string Game { get; set; }
+
+        /// <summary>
+        /// Gets or sets the displayed game-name.
+        /// </summary>
         public string GameDisplayName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the developer-name.
+        /// </summary>
         public string Developer { get; set; }
+
+        /// <summary>
+        /// Gets or sets the event.
+        /// </summary>
         public string Event { get; set; }
-        public int MinValue { get; set; } = 0;
-        public int MaxValue { get; set; } = 1;
-        public int IconId { get; set; } = 0;
-        public bool ValueOptional { get; set; } = true;
-        public Handler[] Handlers { get; set; }
+
+        /// <summary>
+        /// Gets or sets the min-value.
+        /// </summary>
+        public int MinValue { get; set; }
+
+        /// <summary>
+        /// Gets or sets the max-value.
+        /// </summary>
+        public int MaxValue { get; set; }
+
+        /// <summary>
+        /// Gets or sets the icon-id.
+        /// </summary>
+        public int IconId { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the value is optional.
+        /// </summary>
+        public bool ValueOptional { get; set; }
+
+        /// <summary>
+        /// Gets or sets the handler.
+        /// </summary>
+        public Handler[] Handler { get; set; }
+
+        /// <summary>
+        /// Gets or sets the request-data.
+        /// </summary>
         public RequestData Data { get; set; }
     }
 }

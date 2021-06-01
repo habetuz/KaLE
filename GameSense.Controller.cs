@@ -20,6 +20,8 @@ namespace GameSense
     /// </summary>
     public class Controller
     {
+        public static readonly string GameName = "KALE";
+
         private static readonly IAnimator Background = new KeyboardGradient(new int[] { 255, 85, 0 }, new int[] { 0, 196, 255 }, 4, 2);
 
         ////private static read only IAnimator Background = new KeyboardTest();
@@ -29,56 +31,66 @@ namespace GameSense
         };
 
         private static readonly int FrameLength = 50;
-        public static readonly string GameName = "KALE";
 
         static Controller()
         {
             Logger.Log("Starting...", Logger.Type.Info);
-            registerGame();
-            startHeartbeat();
-            bindEvents();
+            RegisterGame();
+            StartHeartbeat();
+            BindEvents();
 
             Logger.Log("Ready!", Logger.Type.Info);
         }
 
-        private static void registerGame()
+        /// <summary>
+        /// Initialize the <see cref="GameSense.Controller"/> and start game sense.
+        /// </summary>
+        public static void Start() 
+        {
+        }
+
+        private static void RegisterGame()
         {
             Logger.Log("Registering game...", Logger.Type.Info);
-            Transmitter.Send(new Request
-            {
-                Game = GameName,
-                GameDisplayName = "KaLE",
-                Developer = "Marvin Fuchs"
-            }, "game_metadata");
+            Transmitter.Send(
+                new Request
+                {
+                    Game = GameName,
+                    GameDisplayName = "KaLE",
+                    Developer = "Marvin Fuchs"
+                }, 
+                "game_metadata");
         }
 
-        private static void startHeartbeat()
+        private static void StartHeartbeat()
         {
             System.Timers.Timer timer = new System.Timers.Timer(10000);
-            timer.Elapsed += heartbeat;
+            timer.Elapsed += Heartbeat;
             timer.AutoReset = true;
             timer.Enabled = true;
-            Logger.Log("Timer startet.", Logger.Type.Info);
+            Logger.Log("Timer started.", Logger.Type.Info);
         }
 
-        private static void bindEvents()
+        private static void BindEvents()
         {
             Logger.Log("Binding events...", Logger.Type.Info);
 
-            //Full keyboard effect
-            Transmitter.Send(new Request
-            {
-                Game = GameName,
-                Event = "KEYBOARD_BITMAP",
-                Handlers = new Handler[]
+            // Full keyboard effect
+            Transmitter.Send(
+                new Request
                 {
-                    new Handler
+                    Game = GameName,
+                    Event = "KEYBOARD_BITMAP",
+                    Handlers = new Handler[]
                     {
-                        DeviceType = "rgb-per-key-zones",
-                        Mode = "bitmap"
+                        new Handler
+                        {
+                            DeviceType = "rgb-per-key-zones",
+                            Mode = "bitmap"
+                        }
                     }
-                }
-            }, "bind_game_event");
+                }, 
+                "bind_game_event");
             Handler[] handlers = new Handler[] { new Handler() };
             Request request = new Request
             {
@@ -94,35 +106,33 @@ namespace GameSense
                 }
             };
             System.Timers.Timer timer = new System.Timers.Timer(FrameLength);
-            timer.Elapsed += keyboardEffect;
+            timer.Elapsed += KeyboardEffect;
             timer.AutoReset = true;
             timer.Enabled = true;
-            keyboardEffect(null, null);
+            KeyboardEffect(null, null);
             Logger.Log("Background-Effect binned!", Logger.Type.Info);
         }
 
-        private static void heartbeat(Object source, System.Timers.ElapsedEventArgs e)
+        private static void Heartbeat(object source, System.Timers.ElapsedEventArgs e)
         {
             Logger.Log("Heartbeat...", Logger.Type.Info);
             Transmitter.Send(new Request { Game = GameName }, "game_heartbeat");
         }
 
-        private static void keyboardEffect(Object source, System.Timers.ElapsedEventArgs e)
+        private static void KeyboardEffect(object source, System.Timers.ElapsedEventArgs e)
         {
             Logger.Log("Keyboard-Effect...", Logger.Type.Debug);
-            Transmitter.Send(new Request
-            {
-                Game = GameName,
-                Event = "KEYBOARD_BITMAP",
-                Data = new RequestData
+            Transmitter.Send(
+                new Request
                 {
-                    Frame = Background.NextFrame()
-                }
-            }, "game_event");
-        }
-
-        public static void Start()
-        {
+                    Game = GameName,
+                    Event = "KEYBOARD_BITMAP",
+                    Data = new RequestData
+                    {
+                        Frame = Background.NextFrame()
+                    }
+                },
+                "game_event");
         }
     }
 }

@@ -1,0 +1,35 @@
+﻿// <copyright file="GameSense.Animation.ColorManipulation.cs">
+// Copyright (c) 2021. All Rights Reserved
+// </copyright>
+// <author>
+// Marvin Fuchs
+// </author>
+// <summary>
+// Visit https://marvin-fuchs.de for more information
+// </summary>
+
+namespace GameSense.Animation
+{
+    /// <summary>
+    /// Helper class that combines a color with another translucent color.
+    /// </summary>
+    public class ColorManipulation
+    {
+        /// <summary>
+        /// Combines one bottom color with a translucent top color.
+        /// </summary>
+        /// <param name="bottom">The bottom color (RGB format)</param>
+        /// <param name="top">The top color (RGB format)</param>
+        /// <param name="transparency">The transparency of the top color</param>
+        /// <returns>The combined color (RGB format)</returns>
+        public static int[] Combine(int[] bottom, int[] top, int transparency)
+        {
+            return new int[]
+            {
+                bottom[0] + ((top[0] - bottom[0]) * transparency),
+                bottom[1] + ((top[1] - bottom[1]) * transparency),
+                bottom[2] + ((top[2] - bottom[2]) * transparency)
+            };
+        }
+    }
+}

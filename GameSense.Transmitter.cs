@@ -65,7 +65,7 @@ namespace GameSense
                     Logger.Log("coreProps.json cannot be deserialized", Logger.Type.Error);
                 }
 
-                Logger.Log("Error:\n" + ex.ToString(), Logger.Type.Error);
+                throw ex;
             }
         }
 

@@ -19,7 +19,7 @@ namespace KaLE
     /// </summary>
     public class InputManager
     {
-        private static readonly IKeyboardMouseEvents GlobalHook = Hook.AppEvents();
+        private static readonly IKeyboardMouseEvents GlobalHook = Hook.GlobalEvents();
         private static readonly Logger Logger = new Logger()
         {
             Ident = "InputManager",

@@ -27,9 +27,8 @@ namespace KaLE
             Logger.Log("Program started. Welcome.", Logger.Type.Info);
             ////GameSense.Controller.Start();
             InputManager.Start();
-            //Console.ReadLine();
-            //InputManager.End();
-            while (true) ;
+            Console.ReadLine();
+            InputManager.End();
         }
     }
 }

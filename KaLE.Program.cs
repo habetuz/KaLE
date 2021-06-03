@@ -36,7 +36,7 @@ namespace KaLE
         
         private static void KeepAlive()
         {
-            while (true) ;
+            Console.ReadLine();
         }
     }
 }

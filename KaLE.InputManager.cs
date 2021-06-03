@@ -11,15 +11,32 @@
 namespace KaLE
 {
     using System;
+    using System.Windows.Forms;
+    using Gma.System.MouseKeyHook;
 
     /// <summary>
     /// Class responsible for managing keyboard and mouse inputs.
     /// </summary>
     public class InputManager
     {
+        private static readonly IKeyboardMouseEvents GlobalHook = Hook.AppEvents();
+        private static readonly Logger Logger = new Logger()
+        {
+            Ident = "InputManager",
+            LogDebug = true,
+        };
+
         static InputManager()
         {
-            Console.WriteLine("InputManager ready!");
+            Logger.Log("Starting...", Logger.Type.Info);
+            GlobalHook.KeyDown += KeyEvent;
+            GlobalHook.MouseDownExt += MouseEvent;
+
+            Hook.GlobalEvents().KeyPress += (sender, e) =>
+            {
+                Console.WriteLine(e.KeyChar);
+            };
+            Logger.Log("Ready!", Logger.Type.Info);
         }
 
         /// <summary>
@@ -146,6 +163,20 @@ namespace KaLE
         /// </summary>
         public static void End()
         {
+            GlobalHook.MouseDownExt -= MouseEvent;
+            GlobalHook.KeyDown -= KeyEvent;
+
+            GlobalHook.Dispose();
+        }
+
+        private static void KeyEvent(object sender, KeyEventArgs eventArgs)
+        {
+            Logger.Log(eventArgs.KeyCode.ToString());
+        }
+
+        private static void MouseEvent(object sender, MouseEventArgs eventArgs)
+        {
+            Logger.Log(eventArgs.Button.ToString());
         }
     }
 }

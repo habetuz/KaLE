@@ -25,10 +25,11 @@ namespace KaLE
         private static void Main(string[] args)
         {
             Logger.Log("Program started. Welcome.", Logger.Type.Info);
-            GameSense.Controller.Start();
-            ////InputManager.Start();
-            Console.ReadLine();
-            ////InputManager.End();
+            ////GameSense.Controller.Start();
+            InputManager.Start();
+            //Console.ReadLine();
+            //InputManager.End();
+            while (true) ;
         }
     }
 }

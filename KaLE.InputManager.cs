@@ -31,6 +31,7 @@ namespace KaLE
             Logger.Log("Starting...", Logger.Type.Info);
             GlobalHook.KeyDown += KeyEvent;
             GlobalHook.MouseDownExt += MouseEvent;
+            Logger.Log("Ready!");
         }
 
         /// <summary>

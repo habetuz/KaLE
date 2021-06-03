@@ -11,6 +11,7 @@
 namespace KaLE
 {
     using System;
+    using System.Threading;
 
     /// <summary>
     /// The main class of this project.
@@ -26,9 +27,16 @@ namespace KaLE
         {
             Logger.Log("Program started. Welcome.", Logger.Type.Info);
             ////GameSense.Controller.Start();
+            new Thread(KeepAlive).Start();
+            
             InputManager.Start();
-            Console.ReadLine();
-            InputManager.End();
+
+            ////InputManager.End();
+        }
+        
+        private static void KeepAlive()
+        {
+            while (true) ;
         }
     }
 }

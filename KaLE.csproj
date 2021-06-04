@@ -57,6 +57,7 @@
     <Compile Include="GameSense\Controller.cs" />
     <Compile Include="GameSense\FrameManager.cs" />
     <Compile Include="GameSense\GSJsonNamingPolicy.cs" />
+    <Compile Include="GameSense\Struct\EventBinder.cs" />
     <Compile Include="GameSense\Struct\Handler.cs" />
     <Compile Include="GameSense\Animation\IAnimator.cs" />
     <Compile Include="GameSense\InputManager.cs" />

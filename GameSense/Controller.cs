@@ -104,20 +104,6 @@ namespace GameSense
                     }
                 },
                 "bind_game_event");
-            Handler[] handlers = new Handler[] { new Handler() };
-            Request request = new Request
-            {
-                Game = GameName,
-                Event = "KEYBOARD_BITMAP",
-                Handlers = new Handler[]
-                {
-                    new Handler
-                    {
-                        DeviceType = "rgb-per-key-zones",
-                        Mode = "bitmap"
-                    }
-                }
-            };
 
             Logger.Log("Keyboard effect binned!", LoggerType.Info);
         }
@@ -152,13 +138,20 @@ namespace GameSense
                 new Request
                 {
                     Game = GameName,
-                    Event = "KEYBOARD_BITMAP",
-                    Data = new RequestData
+                    Events = new EventBinder[]
                     {
-                        Frame = FrameManager.Generate()
+                        new EventBinder
+                        {
+                            Event = "KEYBOARD_BITMAP",
+                            Data = new RequestData
+                            {
+                                Frame = FrameManager.Generate()
+                            }   
+                        }
+
                     }
                 },
-                "game_event");
+                "multiple_game_events");
         }
     }
 }

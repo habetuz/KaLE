@@ -22,11 +22,11 @@ namespace GameSense
     /// </summary>
     public class Transmitter
     {
-        private static readonly MassLogger Logger = new MassLogger(20000)
+        private static readonly MassLogger Logger = new MassLogger(30000)
         {
             Ident = "GameSense/Transmitter",
             LogDebug = false,
-            InfoLogText = "Transmitions"
+            InfoLogText = "Transitions"
         };
 
         private static readonly HttpClient Client = new HttpClient();
@@ -52,8 +52,8 @@ namespace GameSense
                         PropertyNameCaseInsensitive = true
                     });
                 Adress = coreProps.Address;
-                Logger.Log("GameSense server is running on " + Adress, LoggerType.Info);
-                Logger.Log("Ready!", LoggerType.Info);
+                Logger.Log("GameSense server is running on " + Adress, LoggerType.Info, true);
+                Logger.Log("Ready!", LoggerType.Info, true);
             }
             catch (Exception ex)
             {
@@ -99,11 +99,11 @@ namespace GameSense
 
                 if (response.IsSuccessStatusCode)
                 {
-                    Logger.Log("Request to endpoint '" + endpoint + "' received! Status: " + response.StatusCode /*+ " | Content: " + await response.Content.ReadAsStringAsync()*/, LoggerType.Info);
+                    Logger.Log("/" + endpoint, LoggerType.Info);
                 }
                 else
                 {
-                    Logger.Log("Request to endpoint '" + endpoint + "' received! Status: " + response.StatusCode + " | Content: " + await response.Content.ReadAsStringAsync(), LoggerType.Warning);
+                    Logger.Log("Request to endpoint '" + endpoint + "' failed! Status: " + response.StatusCode + " | Content: " + await response.Content.ReadAsStringAsync(), LoggerType.Warning);
                 }
             }
             catch (Exception ex)

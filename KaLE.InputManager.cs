@@ -23,18 +23,19 @@ namespace KaLE
     {
         private static readonly IKeyboardMouseEvents GlobalHook = Hook.GlobalEvents();
 
-        private static readonly Logger Logger = new Logger()
+        private static readonly MassLogger Logger = new MassLogger(30000)
         {
             Ident = "InputManager",
             LogDebug = false,
+            InfoLogText = "Inputs"
         };
 
         static InputManager()
         {
-            Logger.Log("Starting...", Logger.Type.Info);
+            Logger.Log("Starting...", LoggerType.Info, true);
             GlobalHook.KeyDown += KeyEvent;
             GlobalHook.MouseDownExt += MouseEvent;
-            Logger.Log("Ready!", Logger.Type.Info);
+            Logger.Log("Ready!", LoggerType.Info, true);
         }
 
         /// <summary>
@@ -171,7 +172,7 @@ namespace KaLE
         {
             try
             {
-                Logger.Log(((Key)Enum.Parse(typeof(Key), eventArgs.KeyCode.ToString())).ToString());
+                Logger.Log(((Key)Enum.Parse(typeof(Key), eventArgs.KeyCode.ToString())).ToString(), LoggerType.Info);
                 FrameManager.AddKeyAnimation(new KeyFade()
                 {
                     Key = (Key)Enum.Parse(typeof(Key), eventArgs.KeyCode.ToString())
@@ -179,13 +180,13 @@ namespace KaLE
             }
             catch (ArgumentException)
             {
-                Logger.Log("Key " + eventArgs.KeyCode.ToString() + " does not exist", Logger.Type.Warning);
+                Logger.Log("Key " + eventArgs.KeyCode.ToString() + " does not exist", LoggerType.Warning);
             }
         }
 
         private static void MouseEvent(object sender, MouseEventArgs eventArgs)
         {
-            Logger.Log(eventArgs.Button.ToString());
+            Logger.Log(eventArgs.Button.ToString(), LoggerType.Info);
         }
     }
 }

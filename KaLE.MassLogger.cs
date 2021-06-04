@@ -60,12 +60,13 @@ namespace KaLE
 
         private void Log(object source, System.Timers.ElapsedEventArgs e)
         {
-            Console.WriteLine();
             base.Log(InfoLogText, LoggerType.Info);
             foreach (KeyValuePair<string, int> entry in pairs)
             {
                 Console.WriteLine("{0}x {1}", entry.Value, entry.Key);
             }
+            Console.WriteLine();
+            pairs.Clear();
         }
     }
 }

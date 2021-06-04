@@ -122,7 +122,7 @@ namespace GameSense
 
         private static void Heartbeat(object source, System.Timers.ElapsedEventArgs e)
         {
-            Logger.Log("Heartbeat...", LoggerType.Info);
+            ////Logger.Log("Heartbeat...", LoggerType.Info);
             Transmitter.Send(new Request { Game = GameName }, "game_heartbeat");
         }
 

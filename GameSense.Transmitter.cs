@@ -22,11 +22,11 @@ namespace GameSense
     /// </summary>
     public class Transmitter
     {
-        private static readonly Logger Logger = new Logger
+        private static readonly MassLogger Logger = new MassLogger(20000)
         {
             Ident = "GameSense/Transmitter",
             LogDebug = false,
-            LogInfo = false
+            InfoLogText = "Transmitions"
         };
 
         private static readonly HttpClient Client = new HttpClient();
@@ -41,7 +41,7 @@ namespace GameSense
 
         static Transmitter()
         {
-            Logger.Log("Starting...", Logger.Type.Info);
+            Logger.Log("Starting...", LoggerType.Info, true);
             try
             {
                 string file = System.IO.File.ReadAllText("C:/ProgramData/SteelSeries/SteelSeries Engine 3/coreProps.json");
@@ -52,18 +52,18 @@ namespace GameSense
                         PropertyNameCaseInsensitive = true
                     });
                 Adress = coreProps.Address;
-                Logger.Log("GameSense server is running on " + Adress, Logger.Type.Info);
-                Logger.Log("Ready!", Logger.Type.Info);
+                Logger.Log("GameSense server is running on " + Adress, LoggerType.Info);
+                Logger.Log("Ready!", LoggerType.Info);
             }
             catch (Exception ex)
             {
                 if (ex is System.IO.DirectoryNotFoundException || ex is System.IO.FileNotFoundException)
                 {
-                    Logger.Log("coreProps.json could not be found. Maybe the SteelSeries Engine is not running.", Logger.Type.Error);
+                    Logger.Log("coreProps.json could not be found. Maybe the SteelSeries Engine is not running.", LoggerType.Error);
                 }
                 else
                 {
-                    Logger.Log("coreProps.json cannot be deserialized", Logger.Type.Error);
+                    Logger.Log("coreProps.json cannot be deserialized", LoggerType.Error);
                 }
 
                 throw ex;
@@ -99,16 +99,16 @@ namespace GameSense
 
                 if (response.IsSuccessStatusCode)
                 {
-                    Logger.Log("Request to endpoint '" + endpoint + "' received! Status: " + response.StatusCode /*+ " | Content: " + await response.Content.ReadAsStringAsync()*/, Logger.Type.Info);
+                    Logger.Log("Request to endpoint '" + endpoint + "' received! Status: " + response.StatusCode /*+ " | Content: " + await response.Content.ReadAsStringAsync()*/, LoggerType.Info);
                 }
                 else
                 {
-                    Logger.Log("Request to endpoint '" + endpoint + "' received! Status: " + response.StatusCode + " | Content: " + await response.Content.ReadAsStringAsync(), Logger.Type.Warning);
+                    Logger.Log("Request to endpoint '" + endpoint + "' received! Status: " + response.StatusCode + " | Content: " + await response.Content.ReadAsStringAsync(), LoggerType.Warning);
                 }
             }
             catch (Exception ex)
             {
-                Logger.Log("Request to endpoint '" + endpoint + "' failed!\n" + ex.ToString(), Logger.Type.Warning);
+                Logger.Log("Request to endpoint '" + endpoint + "' failed!\n" + ex.ToString(), LoggerType.Warning);
             }
         }
     }

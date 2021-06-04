@@ -60,6 +60,8 @@
     <Compile Include="GameSense.Animation.IAnimator.cs" />
     <Compile Include="KaLE.InputManager.cs" />
     <Compile Include="KaLE.Logger.cs" />
+    <Compile Include="KaLE.LoggerType.cs" />
+    <Compile Include="KaLE.MassLogger.cs" />
     <Compile Include="KaLE.Program.cs" />
     <Compile Include="GameSense.Key.cs" />
     <Compile Include="GameSense.Animation.KeyboardGradient.cs" />

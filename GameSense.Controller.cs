@@ -33,13 +33,13 @@ namespace GameSense
 
         static Controller()
         {
-            Logger.Log("Starting...", Logger.Type.Info);
+            Logger.Log("Starting...", LoggerType.Info);
             RegisterGame();
             StartHeartbeat();
             BindEvents();
             StartUpdate();
 
-            Logger.Log("Ready!", Logger.Type.Info);
+            Logger.Log("Ready!", LoggerType.Info);
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace GameSense
 
         private static void RegisterGame()
         {
-            Logger.Log("Registering game...", Logger.Type.Info);
+            Logger.Log("Registering game...", LoggerType.Info);
             Transmitter.Send(
                 new Request
                 {
@@ -64,7 +64,7 @@ namespace GameSense
 
         private static void BindEvents()
         {
-            Logger.Log("Binding events...", Logger.Type.Info);
+            Logger.Log("Binding events...", LoggerType.Info);
 
             // Full keyboard effect
             Transmitter.Send(
@@ -97,7 +97,7 @@ namespace GameSense
                 }
             };
 
-            Logger.Log("Keyboard effect binned!", Logger.Type.Info);
+            Logger.Log("Keyboard effect binned!", LoggerType.Info);
         }
 
         private static void StartHeartbeat()
@@ -106,7 +106,7 @@ namespace GameSense
             timer.Elapsed += Heartbeat;
             timer.AutoReset = true;
             timer.Enabled = true;
-            Logger.Log("Heartbeat started.", Logger.Type.Info);
+            Logger.Log("Heartbeat started.", LoggerType.Info);
         }
 
         private static void StartUpdate()
@@ -117,18 +117,18 @@ namespace GameSense
             timer.AutoReset = true;
             timer.Enabled = true;
             Update(null, null);
-            Logger.Log("Update started.", Logger.Type.Info);
+            Logger.Log("Update started.", LoggerType.Info);
         }
 
         private static void Heartbeat(object source, System.Timers.ElapsedEventArgs e)
         {
-            Logger.Log("Heartbeat...", Logger.Type.Info);
+            Logger.Log("Heartbeat...", LoggerType.Info);
             Transmitter.Send(new Request { Game = GameName }, "game_heartbeat");
         }
 
         private static void Update(object source, System.Timers.ElapsedEventArgs e)
         {
-            Logger.Log("Keyboard-Effect...", Logger.Type.Debug);
+            Logger.Log("Keyboard-Effect...", LoggerType.Debug);
             Transmitter.Send(
                 new Request
                 {

@@ -23,16 +23,6 @@ namespace KaLE
         private bool logWarning = true;
         private bool logError = true;
 
-        // TODO: Change enum to flags and remove bools.
-
-        /// <summary>
-        /// The logging level.
-        /// </summary>
-        public enum Type
-        {
-            Debug, Info, Warning, Error
-        }
-
         /// <summary>
         /// Sets identification of the logger.
         /// </summary>
@@ -93,11 +83,11 @@ namespace KaLE
         /// </summary>
         /// <param name="text">The text to be logged</param>
         /// <param name="type">The type of the log.</param>
-        public void Log(string text, Type type = Type.Debug)
+        public void Log(string text, LoggerType type = LoggerType.Debug)
         {
             switch (type)
             {
-                case Type.Debug:
+                case LoggerType.Debug:
                     if (this.logDebug)
                     {
                         goto default;
@@ -107,7 +97,7 @@ namespace KaLE
                         return;
                     }
 
-                case Type.Info:
+                case LoggerType.Info:
                     if (this.logInfo)
                     {
                         goto default;
@@ -117,7 +107,7 @@ namespace KaLE
                         return;
                     }
 
-                case Type.Warning:
+                case LoggerType.Warning:
                     if (this.logWarning)
                     {
                         goto default;
@@ -127,7 +117,7 @@ namespace KaLE
                         return;
                     }
 
-                case Type.Error:
+                case LoggerType.Error:
                     if (this.logError)
                     {
                         goto default;

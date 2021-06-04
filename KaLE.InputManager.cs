@@ -10,9 +10,11 @@
 
 namespace KaLE
 {
-    using System;
     using System.Windows.Forms;
+    using System;
     using Gma.System.MouseKeyHook;
+    using GameSense.Animation;
+    using GameSense;
 
     /// <summary>
     /// Class responsible for managing keyboard and mouse inputs.
@@ -23,7 +25,7 @@ namespace KaLE
         private static readonly Logger Logger = new Logger()
         {
             Ident = "InputManager",
-            LogDebug = true,
+            LogDebug = false,
         };
 
         static InputManager()
@@ -166,7 +168,18 @@ namespace KaLE
 
         private static void KeyEvent(object sender, KeyEventArgs eventArgs)
         {
-            Logger.Log(eventArgs.KeyCode.ToString());
+            try
+            {
+                Logger.Log(((Key)Enum.Parse(typeof(Key), eventArgs.KeyCode.ToString())).ToString());
+                FrameManager.AddKeyAnimation(new KeyFade()
+                {
+                    Key = (Key)Enum.Parse(typeof(Key), eventArgs.KeyCode.ToString())
+                });
+            }
+            catch (ArgumentException)
+            {
+                Logger.Log("Key " + eventArgs.KeyCode.ToString() + " does not exist", Logger.Type.Warning);
+            }
         }
 
         private static void MouseEvent(object sender, MouseEventArgs eventArgs)

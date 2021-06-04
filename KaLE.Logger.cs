@@ -36,18 +36,18 @@ namespace KaLE
         /// <summary>
         /// Sets identification of the logger.
         /// </summary>
-        public string Ident 
-        { 
-            set 
-            { 
-                this.ident = value; 
-            } 
+        public string Ident
+        {
+            set
+            {
+                this.ident = value;
+            }
         }
 
         /// <summary>
         /// Sets a value indicating whether <see cref="Type.Debug"/> should be logged.
         /// </summary>
-        public bool LogDebug 
+        public bool LogDebug
         {
             set
             {
@@ -137,13 +137,13 @@ namespace KaLE
                         return;
                     }
 
-                default: 
+                default:
                     Console.WriteLine(
-                        "[{0}] [{1}] [{2}]: {3}", 
-                        DateTime.Now.ToString(), 
-                        this.ident, 
-                        type.ToString(), 
-                        text); 
+                        "[{0}] [{1}] [{2}]: {3}",
+                        DateTime.Now.ToString(),
+                        type.ToString(),
+                        this.ident,
+                        text);
                     break;
             }
         }

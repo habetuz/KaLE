@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GameSense.Animation.ColorManipulation.cs" />
+    <Compile Include="GameSense.Animation.IKeyAnimator.cs" />
     <Compile Include="GameSense.Struct.CoreProps.cs" />
     <Compile Include="GameSense.Frame.cs" />
     <Compile Include="GameSense.Controller.cs" />

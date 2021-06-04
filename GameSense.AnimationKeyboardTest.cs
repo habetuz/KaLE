@@ -10,7 +10,6 @@
 
 namespace GameSense.Animation
 {
-    using GameSense.Struct;
     using KaLE;
 
     public class KeyboardTest : IAnimator

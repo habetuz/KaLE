@@ -11,7 +11,6 @@
 namespace KaLE
 {
     using System;
-    using System.Threading;
     using System.Windows.Forms;
 
     /// <summary>
@@ -28,7 +27,7 @@ namespace KaLE
         {
             Logger.Log("Program started. Welcome.", Logger.Type.Info);
 
-            ////GameSense.Controller.Start();
+            GameSense.Controller.Start();
             InputManager.Start();
 
             Application.Run(new ApplicationContext());

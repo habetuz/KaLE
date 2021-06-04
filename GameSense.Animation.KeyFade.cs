@@ -10,14 +10,20 @@
 
 namespace GameSense.Animation
 {
-    using GameSense.Struct;
+    using KaLE;
 
     /// <summary>
     /// An <see cref="IAnimator"/> that animates a fading color for pressed keys
     /// </summary>
-    internal class KeyFade : IAnimator
+    public class KeyFade : IKeyAnimator
     {
-        private int fadeDuration = 100;
+        private static readonly Logger Logger = new Logger()
+        {
+            Ident = "KeyFade",
+            LogDebug = false
+        };
+
+        private int fadeDuration = 30;
         private int transparency = 100;
         private bool finished = false;
         private int[] color = new int[] { 255, 255, 255 };
@@ -30,7 +36,6 @@ namespace GameSense.Animation
         {
             set
             {
-                this.transparency = value;
                 this.fadeDuration = value;
             }
         }
@@ -41,6 +46,7 @@ namespace GameSense.Animation
         public Key Key
         {
             set { this.key = value; }
+            get { return this.key; }
         }
 
         /// <summary>
@@ -54,21 +60,28 @@ namespace GameSense.Animation
         /// <summary>
         /// Gets a value indicating whether the animation is finished. If 'true' the animation finished and the object can be discarded.
         /// </summary>
-        public bool Finished 
-        { 
+        public bool Finished
+        {
             get { return this.finished; }
         }
 
         public Frame NextFrame(Frame bottomLayer)
         {
             this.transparency -= 100 / this.fadeDuration;
+            Logger.Log("Next frame. Transparency: " + this.transparency);
             if (this.transparency <= 0)
             {
                 this.finished = true;
                 return bottomLayer;
             }
 
-            return bottomLayer.SetColor((int)this.key, ColorManipulation.Combine(bottomLayer.Bitmap[(int)this.key], this.color, this.transparency));
+            return bottomLayer.SetColor(
+                (int)this.key, 
+                ColorManipulation.Combine(
+                    bottomLayer.Bitmap[(int)this.key], 
+                    this.color, 
+                    this.transparency)
+                );
         }
     }
 }

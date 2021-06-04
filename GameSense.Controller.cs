@@ -10,7 +10,6 @@
 
 namespace GameSense
 {
-    using System;
     using GameSense.Animation;
     using GameSense.Struct;
     using KaLE;
@@ -38,6 +37,7 @@ namespace GameSense
             RegisterGame();
             StartHeartbeat();
             BindEvents();
+            StartUpdate();
 
             Logger.Log("Ready!", Logger.Type.Info);
         }
@@ -45,7 +45,7 @@ namespace GameSense
         /// <summary>
         /// Initialize the <see cref="GameSense.Controller"/> and start game sense.
         /// </summary>
-        public static void Start() 
+        public static void Start()
         {
         }
 
@@ -58,17 +58,8 @@ namespace GameSense
                     Game = GameName,
                     GameDisplayName = "KaLE",
                     Developer = "Marvin Fuchs"
-                }, 
+                },
                 "game_metadata");
-        }
-
-        private static void StartHeartbeat()
-        {
-            System.Timers.Timer timer = new System.Timers.Timer(10000);
-            timer.Elapsed += Heartbeat;
-            timer.AutoReset = true;
-            timer.Enabled = true;
-            Logger.Log("Timer started.", Logger.Type.Info);
         }
 
         private static void BindEvents()
@@ -81,7 +72,7 @@ namespace GameSense
                 {
                     Game = GameName,
                     Event = "KEYBOARD_BITMAP",
-                    Handler = new Handler[]
+                    Handlers = new Handler[]
                     {
                         new Handler
                         {
@@ -89,14 +80,14 @@ namespace GameSense
                             Mode = "bitmap"
                         }
                     }
-                }, 
+                },
                 "bind_game_event");
             Handler[] handlers = new Handler[] { new Handler() };
             Request request = new Request
             {
                 Game = GameName,
                 Event = "KEYBOARD_BITMAP",
-                Handler = new Handler[]
+                Handlers = new Handler[]
                 {
                     new Handler
                     {
@@ -105,12 +96,28 @@ namespace GameSense
                     }
                 }
             };
-            System.Timers.Timer timer = new System.Timers.Timer(FrameLength);
-            timer.Elapsed += KeyboardEffect;
+
+            Logger.Log("Keyboard effect binned!", Logger.Type.Info);
+        }
+
+        private static void StartHeartbeat()
+        {
+            System.Timers.Timer timer = new System.Timers.Timer(10000);
+            timer.Elapsed += Heartbeat;
             timer.AutoReset = true;
             timer.Enabled = true;
-            KeyboardEffect(null, null);
-            Logger.Log("Background-Effect binned!", Logger.Type.Info);
+            Logger.Log("Heartbeat started.", Logger.Type.Info);
+        }
+
+        private static void StartUpdate()
+        {
+            FrameManager.Background = Background;
+            System.Timers.Timer timer = new System.Timers.Timer(FrameLength);
+            timer.Elapsed += Update;
+            timer.AutoReset = true;
+            timer.Enabled = true;
+            Update(null, null);
+            Logger.Log("Update started.", Logger.Type.Info);
         }
 
         private static void Heartbeat(object source, System.Timers.ElapsedEventArgs e)
@@ -119,7 +126,7 @@ namespace GameSense
             Transmitter.Send(new Request { Game = GameName }, "game_heartbeat");
         }
 
-        private static void KeyboardEffect(object source, System.Timers.ElapsedEventArgs e)
+        private static void Update(object source, System.Timers.ElapsedEventArgs e)
         {
             Logger.Log("Keyboard-Effect...", Logger.Type.Debug);
             Transmitter.Send(
@@ -129,7 +136,7 @@ namespace GameSense
                     Event = "KEYBOARD_BITMAP",
                     Data = new RequestData
                     {
-                        Frame = Background.NextFrame()
+                        Frame = FrameManager.Generate()
                     }
                 },
                 "game_event");

@@ -25,7 +25,8 @@ namespace GameSense
         private static readonly Logger Logger = new Logger
         {
             Ident = "GameSense/Transmitter",
-            LogInfo = false,
+            LogDebug = false,
+            LogInfo = false
         };
 
         private static readonly HttpClient Client = new HttpClient();
@@ -45,7 +46,7 @@ namespace GameSense
             {
                 string file = System.IO.File.ReadAllText("C:/ProgramData/SteelSeries/SteelSeries Engine 3/coreProps.json");
                 CoreProps coreProps = JsonSerializer.Deserialize<CoreProps>(
-                    file, 
+                    file,
                     new JsonSerializerOptions
                     {
                         PropertyNameCaseInsensitive = true
@@ -59,7 +60,7 @@ namespace GameSense
                 if (ex is System.IO.DirectoryNotFoundException || ex is System.IO.FileNotFoundException)
                 {
                     Logger.Log("coreProps.json could not be found. Maybe the SteelSeries Engine is not running.", Logger.Type.Error);
-                } 
+                }
                 else
                 {
                     Logger.Log("coreProps.json cannot be deserialized", Logger.Type.Error);
@@ -76,11 +77,11 @@ namespace GameSense
         /// <param name="endpoint">The endpoint where the request needs to be send.</param>
         public static async void Send(Request request, string endpoint)
         {
-            Logger.Log("Data: " + request.Game + " | " + request.Handler.Length + " | " + request.Handler[0].DeviceType);
-            HttpContent payload = 
+            ////Logger.Log("Data: " + request.Game + " | " + request.Handlers.Length + " | " + request.Handlers[0].DeviceType);
+            HttpContent payload =
                 new StringContent(
                     JsonSerializer.Serialize<Request>(
-                        request, 
+                        request,
                         new JsonSerializerOptions
                         {
                             PropertyNamingPolicy = new GSJsonNamingPolicy(),
@@ -89,24 +90,21 @@ namespace GameSense
                     Encoding.UTF8,
                     "application/json");
 
-            ////Logger.Log(JsonSerializer.Serialize<Request>(request, new JsonSerializerOptions{PropertyNamingPolicy = new GSJsonNamingPolicy(),WriteIndented = true}));
+            Logger.Log(JsonSerializer.Serialize<Request>(request, new JsonSerializerOptions { PropertyNamingPolicy = new GSJsonNamingPolicy(), WriteIndented = true }));
 
             try
             {
                 ////Logger.Log("Sending a request to endpoint " + endpoint + "...", Logger.Type.Info);
                 HttpResponseMessage response = await Client.PostAsync("http://" + Adress + "/" + endpoint, payload);
 
-                Logger.Type type;
                 if (response.IsSuccessStatusCode)
                 {
-                    type = Logger.Type.Info;
+                    Logger.Log("Request to endpoint '" + endpoint + "' received! Status: " + response.StatusCode /*+ " | Content: " + await response.Content.ReadAsStringAsync()*/, Logger.Type.Info);
                 }
                 else
-                { 
-                    type = Logger.Type.Warning; 
+                {
+                    Logger.Log("Request to endpoint '" + endpoint + "' received! Status: " + response.StatusCode + " | Content: " + await response.Content.ReadAsStringAsync(), Logger.Type.Warning);
                 }
-
-                Logger.Log("Request to endpoint '" + endpoint + "' received! Status: " + response.StatusCode /*+ " | Content: " + await response.Content.ReadAsStringAsync()*/, type);
             }
             catch (Exception ex)
             {

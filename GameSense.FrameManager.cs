@@ -12,16 +12,22 @@ namespace GameSense
 {
     using System.Collections.Generic;
     using GameSense.Animation;
-    using GameSense.Struct;
+    using KaLE;
 
     /// <summary>
     /// Keeps track of all <see cref="GameSense.Animation.IAnimator"/> and combines the <see cref="GameSense.Struct.Frame"/>s from <see cref="GameSense.Animation.IAnimator.NextFrame(Struct.Frame)"/> to one final <see cref="GameSense.Struct.Frame"/>
     /// </summary>
     public class FrameManager
     {
+        private static readonly Logger Logger = new Logger()
+        {
+            Ident = "FrameManager",
+            LogDebug = false
+        };
+
+        private static readonly List<IKeyAnimator> PressedKeys = new List<IKeyAnimator>();
         private static IAnimator background;
-        private static List<IAnimator> pressedKeys;
-        
+
         /// <summary>
         /// Sets the <see cref="GameSense.Animation.IAnimator"/> for the background.
         /// </summary>
@@ -30,12 +36,12 @@ namespace GameSense
             set { background = value; }
         }
 
-        /// <summary>
-        /// Gets a list containing <see cref="GameSense.Animation.IAnimator"/>s. These <see cref="GameSense.Animation.IAnimator"/>s represent pressed keys.
-        /// </summary>
-        public static List<IAnimator> PressedKeys
+        public static void AddKeyAnimation(IKeyAnimator keyAnimation)
         {
-            get { return pressedKeys; }
+            Logger.Log(PressedKeys.TrueForAll(animator => animator.Key != keyAnimation.Key) + "");
+            PressedKeys.RemoveAll(animator => animator.Key == keyAnimation.Key);
+            PressedKeys.Add(keyAnimation);
+
         }
 
         /// <summary>
@@ -44,11 +50,10 @@ namespace GameSense
         /// <returns>The combined <see cref="GameSense.Struct.Frame"/></returns>
         public static Frame Generate()
         {
-            Frame frame = background.NextFrame();
-            foreach (IAnimator key in pressedKeys)
-            {
-                frame = key.NextFrame(frame);
-            }
+            Frame frame = background.NextFrame().Copy();
+            Logger.Log(PressedKeys.Count + "");
+            PressedKeys.ForEach(key => frame = key.NextFrame(frame));
+            PressedKeys.RemoveAll(key => key.Finished);
 
             return frame;
         }

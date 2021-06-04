@@ -57,5 +57,15 @@ namespace GameSense
             this.Bitmap[index] = color;
             return this;
         }
+
+        public Frame Copy()
+        {
+            int[][] copyBitmap = new int[132][];
+            Bitmap.CopyTo(copyBitmap, 0);
+            return new Frame()
+            {
+                Bitmap = copyBitmap
+            };
+        }
     }
 }

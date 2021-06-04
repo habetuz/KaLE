@@ -10,11 +10,21 @@
 
 namespace GameSense.Animation
 {
+    using System;
+    using KaLE;
+
     /// <summary>
     /// Helper class that combines a color with another translucent color.
     /// </summary>
     public class ColorManipulation
     {
+
+        private static readonly Logger Logger = new Logger()
+        {
+            Ident = "ColorManipulation",
+            LogDebug = true
+        };
+
         /// <summary>
         /// Combines one bottom color with a translucent top color.
         /// </summary>
@@ -26,9 +36,9 @@ namespace GameSense.Animation
         {
             return new int[]
             {
-                bottom[0] + ((top[0] - bottom[0]) * transparency),
-                bottom[1] + ((top[1] - bottom[1]) * transparency),
-                bottom[2] + ((top[2] - bottom[2]) * transparency)
+                bottom[0] + (int) Math.Round(((double)(top[0] - bottom[0]) * ((double)transparency/100.0))),
+                bottom[1] + (int) Math.Round(((double)(top[1] - bottom[1]) * ((double)transparency/100.0))),
+                bottom[2] + (int) Math.Round(((double)(top[2] - bottom[2]) * ((double)transparency/100.0)))
             };
         }
     }

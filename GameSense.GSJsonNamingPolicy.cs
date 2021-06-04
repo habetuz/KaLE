@@ -19,8 +19,8 @@ namespace GameSense
     /// </summary>
     public class GSJsonNamingPolicy : JsonNamingPolicy
     {
-        private static readonly Dictionary<string, string> DotNetGSPairs = 
-            new Dictionary<string, string> 
+        private static readonly Dictionary<string, string> DotNetGSPairs =
+            new Dictionary<string, string>
             {
                 { "GameDisplayName",    "game_display_name" },
                 { "MinValue",           "min_value" },
@@ -33,6 +33,7 @@ namespace GameSense
         private static readonly Logger Logger = new Logger
         {
             Ident = "GameSense/GSJsonNamingPolicy",
+            LogDebug = false
         };
 
         /// <summary>
@@ -49,14 +50,14 @@ namespace GameSense
         /// <returns>the to JSON object converted name</returns>
         public override string ConvertName(string name)
         {
-            Logger.Log("Converting " + name + " to " + DotNetGSPairs[name]);
-            try 
-            { 
-                return DotNetGSPairs[name]; 
+            try
+            {
+                Logger.Log("Converting " + name + " to " + DotNetGSPairs[name]);
+                return DotNetGSPairs[name];
             }
-            catch 
-            { 
-                return name.ToLower(); 
+            catch
+            {
+                return name.ToLower();
             }
         }
     }

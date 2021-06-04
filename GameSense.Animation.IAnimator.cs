@@ -10,8 +10,6 @@
 
 namespace GameSense.Animation
 {
-    using GameSense.Struct;
-
     /// <summary>
     /// Interface for animations.
     /// </summary>

@@ -12,7 +12,6 @@ namespace GameSense.Animation
 {
     using System;
     using System.Collections.Generic;
-    using GameSense.Struct;
     using KaLE;
 
     /// <summary>
@@ -83,11 +82,11 @@ namespace GameSense.Animation
 
             for (int i = 0; i < gradient.Length; i++)
             {
-                if (i == gradient.Length / 2) 
-                { 
-                    Logger.Log("Switching direction!"); 
+                if (i == gradient.Length / 2)
+                {
+                    Logger.Log("Switching direction!");
                 }
-                
+
                 Logger.Log("Gradient at " + i + ": " + gradient[i][0] + "|" + gradient[i][1] + "|" + gradient[i][2]);
             }
 

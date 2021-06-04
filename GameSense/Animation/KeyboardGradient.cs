@@ -1,4 +1,4 @@
-﻿// <copyright file="GameSense.Animation.KeyboardGradient.cs">
+﻿// <copyright file="KeyboardGradient.cs">
 // Copyright (c) 2021. All Rights Reserved
 // </copyright>
 // <author>
@@ -12,7 +12,7 @@ namespace GameSense.Animation
 {
     using System;
     using System.Collections.Generic;
-    using KaLE;
+    using Logging;
 
     /// <summary>
     /// An <see cref="IAnimator"/> that generates a gradient background effect. The gradient gets animated moving from right to left.

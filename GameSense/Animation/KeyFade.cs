@@ -1,4 +1,4 @@
-﻿// <copyright file="GameSense.Animation.KeyFade.cs">
+﻿// <copyright file="KeyFade.cs">
 // Copyright (c) 2021. All Rights Reserved
 // </copyright>
 // <author>
@@ -10,7 +10,7 @@
 
 namespace GameSense.Animation
 {
-    using KaLE;
+    using Logging;
 
     /// <summary>
     /// An <see cref="IAnimator"/> that animates a fading color for pressed keys
@@ -30,14 +30,11 @@ namespace GameSense.Animation
         private Key key;
 
         /// <summary>
-        /// Sets amount of <see cref="GameSense.Animation.IAnimator.NextFrame(Frame)"/> calls the key needs to fade out. Time dependents on the <see cref="GameSense.Controller.FrameLength"/>. Default: 100.
+        /// Gets a value indicating whether the animation is finished. If 'true' the animation finished and the object can be discarded.
         /// </summary>
-        public int FadeDuration
+        public bool Finished
         {
-            set
-            {
-                this.fadeDuration = value;
-            }
+            get { return this.finished; }
         }
 
         /// <summary>
@@ -49,20 +46,32 @@ namespace GameSense.Animation
             set { this.key = value; }
         }
 
+        public IKeyAnimator Create()
+        {
+            return new KeyFade()
+            {
+                FadeDuration = this.fadeDuration,
+                Color = this.color,
+            };
+        }
+
+        /// <summary>
+        /// Sets amount of <see cref="GameSense.Animation.IAnimator.NextFrame(Frame)"/> calls the key needs to fade out. Time dependents on the <see cref="GameSense.Controller.FrameLength"/>. Default: 100.
+        /// </summary>
+        public int FadeDuration
+        {
+            set
+            {
+                this.fadeDuration = value;
+            }
+        }
+
         /// <summary>
         /// Sets the color that should fade away. Default: 255(R)|255(G)|255(B)
         /// </summary>
         public int[] Color
         {
             set { this.color = value; }
-        }
-
-        /// <summary>
-        /// Gets a value indicating whether the animation is finished. If 'true' the animation finished and the object can be discarded.
-        /// </summary>
-        public bool Finished
-        {
-            get { return this.finished; }
         }
 
         /// <summary>

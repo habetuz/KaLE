@@ -1,4 +1,4 @@
-﻿// <copyright file="GameSense.Frame.cs">
+﻿// <copyright file="Frame.cs">
 // Copyright (c) 2021. All Rights Reserved
 // </copyright>
 // <author>

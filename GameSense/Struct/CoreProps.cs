@@ -1,4 +1,4 @@
-﻿// <copyright file="GameSense.Struct.CoreProps.cs">
+﻿// <copyright file="CoreProps.cs">
 // Copyright (c) 2021. All Rights Reserved
 // </copyright>
 // <author>

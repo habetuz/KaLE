@@ -1,4 +1,4 @@
-﻿// <copyright file="GameSense.FrameManager.cs">
+﻿// <copyright file="FrameManager.cs">
 // Copyright (c) 2021. All Rights Reserved
 // </copyright>
 // <author>
@@ -12,7 +12,7 @@ namespace GameSense
 {
     using System.Collections.Generic;
     using GameSense.Animation;
-    using KaLE;
+    using Logging;
 
     /// <summary>
     /// Keeps track of all <see cref="GameSense.Animation.IAnimator"/> and combines the <see cref="GameSense.Struct.Frame"/>s from <see cref="GameSense.Animation.IAnimator.NextFrame(Struct.Frame)"/> to one final <see cref="GameSense.Struct.Frame"/>
@@ -37,7 +37,7 @@ namespace GameSense
         }
 
         /// <summary>
-        /// Adds a <see cref="IKeyAnimator"/> for a <see cref="Key"/>. Removes any <see cref="IKeyAnimator"/> for the <see cref="Key"/> of the given parameter.
+        /// Adds a <see cref="IKeyAnimator"/> for a <see cref="Key"/>. Removes any excising <see cref="IKeyAnimator"/> for the <see cref="Key"/> of the given parameter.
         /// </summary>
         /// <param name="keyAnimation">The <see cref="IKeyAnimator"/> to be added.</param>
         public static void AddKeyAnimation(IKeyAnimator keyAnimation)

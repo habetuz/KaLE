@@ -1,4 +1,4 @@
-﻿// <copyright file="GameSense.Animation.IAnimator.cs">
+﻿// <copyright file="IAnimator.cs">
 // Copyright (c) 2021. All Rights Reserved
 // </copyright>
 // <author>

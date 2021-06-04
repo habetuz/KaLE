@@ -1,4 +1,4 @@
-﻿// <copyright file="GameSense.Struct.Handler.cs">
+﻿// <copyright file="Handler.cs">
 // Copyright (c) 2021. All Rights Reserved
 // </copyright>
 // <author>

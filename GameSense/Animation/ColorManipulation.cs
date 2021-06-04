@@ -1,4 +1,4 @@
-﻿// <copyright file="GameSense.Animation.ColorManipulation.cs">
+﻿// <copyright file="ColorManipulation.cs">
 // Copyright (c) 2021. All Rights Reserved
 // </copyright>
 // <author>
@@ -11,7 +11,7 @@
 namespace GameSense.Animation
 {
     using System;
-    using KaLE;
+    using Logging;
 
     /// <summary>
     /// Helper class that combines a color with another translucent color.

@@ -1,4 +1,4 @@
-﻿// <copyright file="GameSense.Transmitter.cs">
+﻿// <copyright file="Transmitter.cs">
 // Copyright (c) 2021. All Rights Reserved
 // </copyright>
 // <author>
@@ -15,14 +15,14 @@ namespace GameSense
     using System.Text;
     using System.Text.Json;
     using GameSense.Struct;
-    using KaLE;
+    using Logging;
 
     /// <summary>
     /// Class responsible for the communication to the game sense engine.
     /// </summary>
     public class Transmitter
     {
-        private static readonly MassLogger Logger = new MassLogger(30000)
+        private static readonly MassLogger Logger = new MassLogger(300000)
         {
             Ident = "GameSense/Transmitter",
             LogDebug = false,

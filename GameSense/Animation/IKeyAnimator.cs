@@ -1,4 +1,4 @@
-﻿// <copyright file="GameSense.Animation.IKeyAnimator.cs">
+﻿// <copyright file="IKeyAnimator.cs">
 // Copyright (c) 2021. All Rights Reserved
 // </copyright>
 // <author>
@@ -24,5 +24,7 @@ namespace GameSense.Animation
         /// Gets or sets the pressed key.
         /// </summary>
         Key Key { get; set; }
+
+        IKeyAnimator Create();
     }
 }

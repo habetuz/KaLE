@@ -1,4 +1,4 @@
-﻿// <copyright file="GameSense.Controller.cs">
+﻿// <copyright file="Controller.cs">
 // Copyright (c) 2021. All Rights Reserved
 // </copyright>
 // <author>
@@ -10,9 +10,10 @@
 
 namespace GameSense
 {
+    using System.Timers;
     using GameSense.Animation;
     using GameSense.Struct;
-    using KaLE;
+    using Logging;
 
     /// <summary>
     /// Controls communication with the game sense API and the animation cycle.
@@ -21,15 +22,13 @@ namespace GameSense
     {
         public static readonly string GameName = "KALE";
 
-        private static readonly IAnimator Background = new KeyboardGradient(new int[] { 255, 85, 0 }, new int[] { 0, 196, 255 }, 4, 2);
+        private static readonly Timer UpdateTimer = new Timer(50);
 
         ////private static read only IAnimator Background = new KeyboardTest();
         private static readonly Logger Logger = new Logger
         {
             Ident = "GameSense/Controller",
         };
-
-        private static readonly int FrameLength = 50;
 
         static Controller()
         {
@@ -42,11 +41,34 @@ namespace GameSense
             Logger.Log("Ready!", LoggerType.Info);
         }
 
+        public static IAnimator Background
+        {
+            set
+            {
+                FrameManager.Background = value;
+                UpdateTimer.Enabled = true;
+                Logger.Log("Background set.", LoggerType.Info);
+            }
+        }
+
+        public static IKeyAnimator DefaultKeyAnimation
+        {
+            set
+            {
+                InputManager.DefaultKeyAnimation = value;
+            }
+        }
+
         /// <summary>
         /// Initialize the <see cref="GameSense.Controller"/> and start game sense.
         /// </summary>
         public static void Start()
         {
+        }
+
+        public static void Stop()
+        {
+            InputManager.Stop();
         }
 
         private static void RegisterGame()
@@ -102,7 +124,7 @@ namespace GameSense
 
         private static void StartHeartbeat()
         {
-            System.Timers.Timer timer = new System.Timers.Timer(10000);
+            Timer timer = new System.Timers.Timer(10000);
             timer.Elapsed += Heartbeat;
             timer.AutoReset = true;
             timer.Enabled = true;
@@ -111,13 +133,10 @@ namespace GameSense
 
         private static void StartUpdate()
         {
-            FrameManager.Background = Background;
-            System.Timers.Timer timer = new System.Timers.Timer(FrameLength);
-            timer.Elapsed += Update;
-            timer.AutoReset = true;
-            timer.Enabled = true;
-            Update(null, null);
-            Logger.Log("Update started.", LoggerType.Info);
+            UpdateTimer.Elapsed += Update;
+            UpdateTimer.AutoReset = true;
+            UpdateTimer.Enabled = false;
+            Logger.Log("UpdateTimer ready.", LoggerType.Info);
         }
 
         private static void Heartbeat(object source, System.Timers.ElapsedEventArgs e)

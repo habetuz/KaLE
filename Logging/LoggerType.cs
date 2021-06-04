@@ -1,4 +1,4 @@
-﻿// <copyright file="KaLE.LoggerType.cs">
+﻿// <copyright file="LoggerType.cs">
 // Copyright (c) 2021. All Rights Reserved
 // </copyright>
 // <author>
@@ -8,7 +8,7 @@
 // Visit https://marvin-fuchs.de for more information
 // </summary>
 
-namespace KaLE
+namespace Logging
 {
     /// <summary>
     /// Logging levels for <see cref="Logger"/> and <see cref="MassLogger"/>.

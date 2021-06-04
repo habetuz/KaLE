@@ -1,4 +1,4 @@
-﻿// <copyright file="GameSense.AnimationKeyboardTest.cs">
+﻿// <copyright file="AnimationKeyboardTest.cs">
 // Copyright (c) 2021. All Rights Reserved
 // </copyright>
 // <author>
@@ -10,7 +10,7 @@
 
 namespace GameSense.Animation
 {
-    using KaLE;
+    using Logging;
 
     public class KeyboardTest : IAnimator
     {

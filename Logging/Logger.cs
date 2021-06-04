@@ -1,4 +1,4 @@
-﻿// <copyright file="KaLE.Logger.cs">
+﻿// <copyright file="Logger.cs">
 // Copyright (c) 2021. All Rights Reserved
 // </copyright>
 // <author>
@@ -8,7 +8,7 @@
 // Visit https://marvin-fuchs.de for more information
 // </summary>
 
-namespace KaLE
+namespace Logging
 {
     using System;
 

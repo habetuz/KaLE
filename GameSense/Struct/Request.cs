@@ -1,4 +1,4 @@
-﻿// <copyright file="GameSense.Struct.Request.cs">
+﻿// <copyright file="Request.cs">
 // Copyright (c) 2021. All Rights Reserved
 // </copyright>
 // <author>

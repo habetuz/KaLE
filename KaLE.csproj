@@ -38,6 +38,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL" />
     <Reference Include="System.Text.Json, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL" />
     <Reference Include="System.Windows.Forms" />
@@ -49,30 +50,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GameSense.Animation.ColorManipulation.cs" />
-    <Compile Include="GameSense.Animation.IKeyAnimator.cs" />
-    <Compile Include="GameSense.Struct.CoreProps.cs" />
-    <Compile Include="GameSense.Frame.cs" />
-    <Compile Include="GameSense.Controller.cs" />
-    <Compile Include="GameSense.FrameManager.cs" />
-    <Compile Include="GameSense.GSJsonNamingPolicy.cs" />
-    <Compile Include="GameSense.Struct.Handler.cs" />
-    <Compile Include="GameSense.Animation.IAnimator.cs" />
-    <Compile Include="KaLE.InputManager.cs" />
-    <Compile Include="KaLE.Logger.cs" />
-    <Compile Include="KaLE.LoggerType.cs" />
-    <Compile Include="KaLE.MassLogger.cs" />
-    <Compile Include="KaLE.Program.cs" />
-    <Compile Include="GameSense.Key.cs" />
-    <Compile Include="GameSense.Animation.KeyboardGradient.cs" />
-    <Compile Include="GameSense.AnimationKeyboardTest.cs">
+    <Compile Include="GameSense\Animation\ColorManipulation.cs" />
+    <Compile Include="GameSense\Animation\IKeyAnimator.cs" />
+    <Compile Include="GameSense\Struct\CoreProps.cs" />
+    <Compile Include="GameSense\Frame.cs" />
+    <Compile Include="GameSense\Controller.cs" />
+    <Compile Include="GameSense\FrameManager.cs" />
+    <Compile Include="GameSense\GSJsonNamingPolicy.cs" />
+    <Compile Include="GameSense\Struct\Handler.cs" />
+    <Compile Include="GameSense\Animation\IAnimator.cs" />
+    <Compile Include="GameSense\InputManager.cs" />
+    <Compile Include="Logging\Logger.cs" />
+    <Compile Include="Logging\LoggerType.cs" />
+    <Compile Include="Logging\MassLogger.cs" />
+    <Compile Include="KaLE\Program.cs" />
+    <Compile Include="GameSense\GameSense.Key.cs" />
+    <Compile Include="GameSense\Animation\KeyboardGradient.cs" />
+    <Compile Include="GameSense\Animation\AnimationKeyboardTest.cs">
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
-    <Compile Include="GameSense.Animation.KeyFade.cs" />
+    <Compile Include="GameSense\Animation\KeyFade.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="GameSense.Transmitter.cs" />
-    <Compile Include="GameSense.Struct.Request.cs" />
-    <Compile Include="GameSense.Struct.RequestData.cs" />
+    <Compile Include="GameSense\Transmitter.cs" />
+    <Compile Include="GameSense\Struct\Request.cs" />
+    <Compile Include="GameSense\Struct\GameSense.Struct.RequestData.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

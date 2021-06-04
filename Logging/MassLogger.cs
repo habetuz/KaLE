@@ -1,4 +1,4 @@
-﻿// <copyright file="KaLE.MassLogger.cs">
+﻿// <copyright file="MassLogger.cs">
 // Copyright (c) 2021. All Rights Reserved
 // </copyright>
 // <author>
@@ -8,7 +8,7 @@
 // Visit https://marvin-fuchs.de for more information
 // </summary>
 
-namespace KaLE
+namespace Logging
 {
     using System;
     using System.Collections.Generic;

@@ -1,4 +1,4 @@
-﻿// <copyright file="GameSense.GSJsonNamingPolicy.cs">
+﻿// <copyright file="GSJsonNamingPolicy.cs">
 // Copyright (c) 2021. All Rights Reserved
 // </copyright>
 // <author>
@@ -12,7 +12,7 @@ namespace GameSense
 {
     using System.Collections.Generic;
     using System.Text.Json;
-    using KaLE;
+    using Logging;
 
     /// <summary>
     /// A <see cref="System.Text.Json.JsonNamingPolicy"/> for the game sense API.

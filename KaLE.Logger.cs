@@ -140,7 +140,7 @@ namespace KaLE
                 default:
                     Console.WriteLine(
                         "[{0}] [{1}] [{2}]: {3}",
-                        DateTime.Now.ToString(),
+                        DateTime.UtcNow.ToString("dd-MM-yyyy | HH:mm:ss.fff"),
                         type.ToString(),
                         this.ident,
                         text);

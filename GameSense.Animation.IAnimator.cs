@@ -18,7 +18,7 @@ namespace GameSense.Animation
         /// <summary>
         /// Generates the next <see cref="Frame"/>.
         /// </summary>
-        /// <param name="bottomLayer">The bottom <see cref="Frame"/> the method will add it's <see cref="Frame"/></param>
+        /// <param name="bottomLayer">The bottom <see cref="Frame"/> the method will add it's own <see cref="Frame"/> on.</param>
         /// <returns>the next <see cref="Frame"/></returns>
         Frame NextFrame(Frame bottomLayer = null);
     }

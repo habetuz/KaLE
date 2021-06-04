@@ -10,11 +10,11 @@
 
 namespace KaLE
 {
-    using System.Windows.Forms;
     using System;
-    using Gma.System.MouseKeyHook;
-    using GameSense.Animation;
+    using System.Windows.Forms;
     using GameSense;
+    using GameSense.Animation;
+    using Gma.System.MouseKeyHook;
 
     /// <summary>
     /// Class responsible for managing keyboard and mouse inputs.
@@ -22,6 +22,7 @@ namespace KaLE
     public class InputManager
     {
         private static readonly IKeyboardMouseEvents GlobalHook = Hook.GlobalEvents();
+
         private static readonly Logger Logger = new Logger()
         {
             Ident = "InputManager",

@@ -58,10 +58,14 @@ namespace GameSense
             return this;
         }
 
+        /// <summary>
+        /// Creates a copy of itself.
+        /// </summary>
+        /// <returns>The copy</returns>
         public Frame Copy()
         {
             int[][] copyBitmap = new int[132][];
-            Bitmap.CopyTo(copyBitmap, 0);
+            this.Bitmap.CopyTo(copyBitmap, 0);
             return new Frame()
             {
                 Bitmap = copyBitmap

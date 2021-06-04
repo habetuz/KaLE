@@ -8,17 +8,21 @@
 // Visit https://marvin-fuchs.de for more information
 // </summary>
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace GameSense.Animation
 {
+    /// <summary>
+    /// Interface for pressed keys animations
+    /// </summary>
     public interface IKeyAnimator : IAnimator
     {
+        /// <summary>
+        /// Gets a value indicating whether the animation has finished yet.
+        /// </summary>
         bool Finished { get; }
+
+        /// <summary>
+        /// Gets or sets the pressed key.
+        /// </summary>
         Key Key { get; set; }
     }
 }

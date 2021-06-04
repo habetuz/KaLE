@@ -36,12 +36,15 @@ namespace GameSense
             set { background = value; }
         }
 
+        /// <summary>
+        /// Adds a <see cref="IKeyAnimator"/> for a <see cref="Key"/>. Removes any <see cref="IKeyAnimator"/> for the <see cref="Key"/> of the given parameter.
+        /// </summary>
+        /// <param name="keyAnimation">The <see cref="IKeyAnimator"/> to be added.</param>
         public static void AddKeyAnimation(IKeyAnimator keyAnimation)
         {
-            Logger.Log(PressedKeys.TrueForAll(animator => animator.Key != keyAnimation.Key) + "");
+            Logger.Log(PressedKeys.TrueForAll(animator => animator.Key != keyAnimation.Key) + string.Empty);
             PressedKeys.RemoveAll(animator => animator.Key == keyAnimation.Key);
             PressedKeys.Add(keyAnimation);
-
         }
 
         /// <summary>
@@ -51,7 +54,7 @@ namespace GameSense
         public static Frame Generate()
         {
             Frame frame = background.NextFrame().Copy();
-            Logger.Log(PressedKeys.Count + "");
+            Logger.Log(PressedKeys.Count + string.Empty);
             PressedKeys.ForEach(key => frame = key.NextFrame(frame));
             PressedKeys.RemoveAll(key => key.Finished);
 

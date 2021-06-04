@@ -41,12 +41,12 @@ namespace GameSense.Animation
         }
 
         /// <summary>
-        /// Sets the key that was pressed.
+        /// Gets or sets the pressed key.
         /// </summary>
         public Key Key
         {
-            set { this.key = value; }
             get { return this.key; }
+            set { this.key = value; }
         }
 
         /// <summary>
@@ -65,6 +65,11 @@ namespace GameSense.Animation
             get { return this.finished; }
         }
 
+        /// <summary>
+        /// Generates the next <see cref="Frame"/>.
+        /// </summary>
+        /// <param name="bottomLayer">The bottom <see cref="Frame"/> the method will add it's own <see cref="Frame"/> on.</param>
+        /// <returns>the next <see cref="Frame"/></returns>
         public Frame NextFrame(Frame bottomLayer)
         {
             this.transparency -= 100 / this.fadeDuration;
@@ -76,12 +81,8 @@ namespace GameSense.Animation
             }
 
             return bottomLayer.SetColor(
-                (int)this.key, 
-                ColorManipulation.Combine(
-                    bottomLayer.Bitmap[(int)this.key], 
-                    this.color, 
-                    this.transparency)
-                );
+                (int)this.key,
+                ColorManipulation.Combine(bottomLayer.Bitmap[(int)this.key], this.color, this.transparency));
         }
     }
 }

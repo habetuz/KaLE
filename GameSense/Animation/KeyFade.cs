@@ -46,15 +46,6 @@ namespace GameSense.Animation
             set { this.key = value; }
         }
 
-        public IKeyAnimator Create()
-        {
-            return new KeyFade()
-            {
-                FadeDuration = this.fadeDuration,
-                Color = this.color,
-            };
-        }
-
         /// <summary>
         /// Sets amount of <see cref="GameSense.Animation.IAnimator.NextFrame(Frame)"/> calls the key needs to fade out. Time dependents on the <see cref="GameSense.Controller.FrameLength"/>. Default: 100.
         /// </summary>
@@ -72,6 +63,19 @@ namespace GameSense.Animation
         public int[] Color
         {
             set { this.color = value; }
+        }
+
+        /// <summary>
+        /// Creates a copy of itself.
+        /// </summary>
+        /// <returns>The copy.</returns>
+        public IKeyAnimator Create()
+        {
+            return new KeyFade()
+            {
+                FadeDuration = this.fadeDuration,
+                Color = this.color,
+            };
         }
 
         /// <summary>

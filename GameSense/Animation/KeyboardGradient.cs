@@ -17,7 +17,7 @@ namespace GameSense.Animation
     /// <summary>
     /// An <see cref="IAnimator"/> that generates a gradient background effect. The gradient gets animated moving from right to left.
     /// </summary>
-    public class KeyboardGradient : IAnimator
+    public class KeyboardGradient : IKeyboardAnimator
     {
         private static readonly Logger Logger = new Logger
         {
@@ -115,7 +115,7 @@ namespace GameSense.Animation
             Logger.Log(this.frames.Length + " frames rendered");
         }
 
-        Frame IAnimator.NextFrame(Frame bottomLayer)
+        Frame IKeyboardAnimator.NextFrame(Frame bottomLayer)
         {
             if (this.currentFrame >= this.frames.Length)
             {

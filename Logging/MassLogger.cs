@@ -48,7 +48,7 @@ namespace Logging
             if (instant)
             {
                 base.Log(text, type);
-            } 
+            }
             else
             {
                 this.Log(text, type);
@@ -67,7 +67,7 @@ namespace Logging
                 base.Log(text, type);
                 return;
             }
-            
+
             if (this.pairs.ContainsKey(text))
             {
                 this.pairs[text]++;

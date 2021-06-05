@@ -15,6 +15,7 @@ namespace GameSense
     using System.Text;
     using System.Text.Json;
     using GameSense.Struct;
+    using GameSense.Struct.Request;
     using Logging;
 
     /// <summary>
@@ -75,12 +76,12 @@ namespace GameSense
         /// </summary>
         /// <param name="request">The request to send.</param>
         /// <param name="endpoint">The endpoint where the request needs to be send.</param>
-        public static async void Send(Request request, string endpoint)
+        public static async void Send(BaseRequest request, string endpoint)
         {
             ////Logger.Log("Data: " + request.Game + " | " + request.Handlers.Length + " | " + request.Handlers[0].DeviceType);
             HttpContent payload =
                 new StringContent(
-                    JsonSerializer.Serialize<Request>(
+                    JsonSerializer.Serialize<BaseRequest>(
                         request,
                         new JsonSerializerOptions
                         {
@@ -90,7 +91,7 @@ namespace GameSense
                     Encoding.UTF8,
                     "application/json");
 
-            Logger.Log(JsonSerializer.Serialize<Request>(request, new JsonSerializerOptions { PropertyNamingPolicy = new GSJsonNamingPolicy(), WriteIndented = true }));
+            Logger.Log(JsonSerializer.Serialize<BaseRequest>(request, new JsonSerializerOptions { PropertyNamingPolicy = new GSJsonNamingPolicy(), WriteIndented = true }));
 
             try
             {
@@ -103,12 +104,12 @@ namespace GameSense
                 }
                 else
                 {
-                    Logger.Log("Request to endpoint '" + endpoint + "' failed! Status: " + response.StatusCode + " | Content: " + await response.Content.ReadAsStringAsync(), LoggerType.Warning);
+                    Logger.Log("BaseRequest to endpoint '" + endpoint + "' failed! Status: " + response.StatusCode + " | Content: " + await response.Content.ReadAsStringAsync(), LoggerType.Warning);
                 }
             }
             catch (Exception ex)
             {
-                Logger.Log("Request to endpoint '" + endpoint + "' failed!\n" + ex.ToString(), LoggerType.Warning);
+                Logger.Log("BaseRequest to endpoint '" + endpoint + "' failed!\n" + ex.ToString(), LoggerType.Warning);
             }
         }
     }

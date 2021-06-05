@@ -1,4 +1,4 @@
-﻿// <copyright file="FrameManager.cs">
+﻿// <copyright file="KeyboardFrameManager.cs">
 // Copyright (c) 2021. All Rights Reserved
 // </copyright>
 // <author>
@@ -17,21 +17,21 @@ namespace GameSense
     /// <summary>
     /// Keeps track of all <see cref="GameSense.Animation.IAnimator"/> and combines the <see cref="GameSense.Struct.Frame"/>s from <see cref="GameSense.Animation.IAnimator.NextFrame(Struct.Frame)"/> to one final <see cref="GameSense.Struct.Frame"/>
     /// </summary>
-    public class FrameManager
+    public class KeyboardFrameManager
     {
         private static readonly Logger Logger = new Logger()
         {
-            Ident = "FrameManager",
+            Ident = "KeyboardFrameManager",
             LogDebug = false
         };
 
         private static readonly List<IKeyAnimator> PressedKeys = new List<IKeyAnimator>();
-        private static IAnimator background;
+        private static IKeyboardAnimator background;
 
         /// <summary>
         /// Sets the <see cref="GameSense.Animation.IAnimator"/> for the background.
         /// </summary>
-        public static IAnimator Background
+        public static IKeyboardAnimator Background
         {
             set { background = value; }
         }

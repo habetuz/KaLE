@@ -52,14 +52,19 @@
   <ItemGroup>
     <Compile Include="GameSense\Animation\ColorManipulation.cs" />
     <Compile Include="GameSense\Animation\IKeyAnimator.cs" />
+    <Compile Include="GameSense\Animation\IMouseAnimator.cs" />
+    <Compile Include="GameSense\Animation\IMousePadAnimator.cs" />
+    <Compile Include="GameSense\Struct\Request\Color.cs" />
+    <Compile Include="GameSense\Struct\Request\ColorHandler.cs" />
+    <Compile Include="GameSense\Struct\Request\ColorHandlerGradient.cs" />
     <Compile Include="GameSense\Struct\CoreProps.cs" />
     <Compile Include="GameSense\Frame.cs" />
     <Compile Include="GameSense\Controller.cs" />
-    <Compile Include="GameSense\FrameManager.cs" />
+    <Compile Include="GameSense\KeyboardFrameManager.cs" />
     <Compile Include="GameSense\GSJsonNamingPolicy.cs" />
-    <Compile Include="GameSense\Struct\EventBinder.cs" />
-    <Compile Include="GameSense\Struct\Handler.cs" />
-    <Compile Include="GameSense\Animation\IAnimator.cs" />
+    <Compile Include="GameSense\Struct\Request\EventBinder.cs" />
+    <Compile Include="GameSense\Struct\Request\Handler.cs" />
+    <Compile Include="GameSense\Animation\IKeyboardAnimator.cs" />
     <Compile Include="GameSense\InputManager.cs" />
     <Compile Include="Logging\Logger.cs" />
     <Compile Include="Logging\LoggerType.cs" />
@@ -73,8 +78,8 @@
     <Compile Include="GameSense\Animation\KeyFade.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GameSense\Transmitter.cs" />
-    <Compile Include="GameSense\Struct\Request.cs" />
-    <Compile Include="GameSense\Struct\GameSense.Struct.RequestData.cs" />
+    <Compile Include="GameSense\Struct\Request\BaseRequest.cs" />
+    <Compile Include="GameSense\Struct\Request\RequestData.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

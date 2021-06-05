@@ -1,4 +1,4 @@
-﻿// <copyright file="GameSense.Struct.RequestData.cs">
+﻿// <copyright file="RequestData.cs">
 // Copyright (c) 2021. All Rights Reserved
 // </copyright>
 // <author>
@@ -8,7 +8,7 @@
 // Visit https://marvin-fuchs.de for more information
 // </summary>
 
-namespace GameSense.Struct
+namespace GameSense.Struct.Request
 {
     /// <summary>
     /// <see href="https://github.com/SteelSeries/gamesense-sdk/blob/master/doc/api/json-handlers-full-keyboard-lighting.md"/>

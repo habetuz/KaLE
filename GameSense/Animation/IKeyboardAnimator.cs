@@ -1,4 +1,4 @@
-﻿// <copyright file="IAnimator.cs">
+﻿// <copyright file="IKeyboardAnimator.cs">
 // Copyright (c) 2021. All Rights Reserved
 // </copyright>
 // <author>
@@ -11,9 +11,9 @@
 namespace GameSense.Animation
 {
     /// <summary>
-    /// Interface for animations.
+    /// Interface for keyboard animations.
     /// </summary>
-    public interface IAnimator
+    public interface IKeyboardAnimator
     {
         /// <summary>
         /// Generates the next <see cref="Frame"/>.

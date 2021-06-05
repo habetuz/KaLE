@@ -12,7 +12,7 @@ namespace GameSense.Animation
 {
     using Logging;
 
-    public class KeyboardTest : IAnimator
+    public class KeyboardTest : IKeyboardAnimator
     {
         private static readonly Logger Logger = new Logger
         {

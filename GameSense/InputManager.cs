@@ -12,9 +12,9 @@ namespace GameSense
 {
     using System;
     using System.Windows.Forms;
-    using Logging;
     using GameSense.Animation;
     using Gma.System.MouseKeyHook;
+    using Logging;
 
     /// <summary>
     /// Class responsible for managing keyboard and mouse inputs.
@@ -22,7 +22,6 @@ namespace GameSense
     internal class InputManager
     {
         private static readonly IKeyboardMouseEvents GlobalHook = Hook.GlobalEvents();
-        public static IKeyAnimator DefaultKeyAnimation { get; set; }
 
         private static readonly MassLogger Logger = new MassLogger(300000)
         {
@@ -38,6 +37,8 @@ namespace GameSense
             GlobalHook.MouseDownExt += MouseEvent;
             Logger.Log("Ready!", LoggerType.Info, true);
         }
+
+        public static IKeyAnimator DefaultKeyAnimation { get; set; }
 
         /// <summary>
         /// Starts the <see cref="InputManager"/>
@@ -64,7 +65,7 @@ namespace GameSense
                 Logger.Log(((Key)Enum.Parse(typeof(Key), eventArgs.KeyCode.ToString())).ToString(), LoggerType.Info);
                 IKeyAnimator animation = DefaultKeyAnimation.Create();
                 animation.Key = (Key)Enum.Parse(typeof(Key), eventArgs.KeyCode.ToString());
-                FrameManager.AddKeyAnimation(animation);
+                KeyboardFrameManager.AddKeyAnimation(animation);
             }
             catch (ArgumentException)
             {

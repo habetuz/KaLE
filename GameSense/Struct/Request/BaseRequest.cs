@@ -1,4 +1,4 @@
-﻿// <copyright file="Request.cs">
+﻿// <copyright file="BaseRequest.cs">
 // Copyright (c) 2021. All Rights Reserved
 // </copyright>
 // <author>
@@ -8,12 +8,12 @@
 // Visit https://marvin-fuchs.de for more information
 // </summary>
 
-namespace GameSense.Struct
+namespace GameSense.Struct.Request
 {
     /// <summary>
     /// <see href="https://github.com/SteelSeries/gamesense-sdk"/>
     /// </summary>
-    public struct Request
+    public struct BaseRequest
     {
         /// <summary>
         /// Gets or sets the game-name.
@@ -54,9 +54,15 @@ namespace GameSense.Struct
         /// Gets or sets the handlers.
         /// </summary>
         public Handler[] Handlers { get; set; }
-        
+
+        /// <summary>
+        /// Gets or sets the event name.
+        /// </summary>
         public string Event { get; set; }
 
+        /// <summary>
+        /// Gets or sets an array with events.
+        /// </summary>
         public EventBinder[] Events { get; set; }
     }
 }

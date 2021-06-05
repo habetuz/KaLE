@@ -1,4 +1,4 @@
-﻿// <copyright file="LoggerType.cs">
+﻿// <copyright file="IMousePadAnimator.cs">
 // Copyright (c) 2021. All Rights Reserved
 // </copyright>
 // <author>
@@ -8,13 +8,12 @@
 // Visit https://marvin-fuchs.de for more information
 // </summary>
 
-namespace Logging
+namespace GameSense.Animation
 {
     /// <summary>
-    /// Logging levels for <see cref="Logger"/> and <see cref="MassLogger"/>.
+    /// Interface for mouse pad animations.
     /// </summary>
-    public enum LoggerType
+    public interface IMousePadAnimator
     {
-        Debug, Info, Warning, Error
     }
 }

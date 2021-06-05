@@ -13,7 +13,7 @@ namespace GameSense.Animation
     /// <summary>
     /// Interface for pressed keys animations
     /// </summary>
-    public interface IKeyAnimator : IAnimator
+    public interface IKeyAnimator : IKeyboardAnimator
     {
         /// <summary>
         /// Gets a value indicating whether the animation has finished yet.
@@ -25,6 +25,10 @@ namespace GameSense.Animation
         /// </summary>
         Key Key { get; set; }
 
+        /// <summary>
+        /// Creates a copy of itself.
+        /// </summary>
+        /// <returns>The copy.</returns>
         IKeyAnimator Create();
     }
 }

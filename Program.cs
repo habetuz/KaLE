@@ -14,7 +14,6 @@ namespace KaLE
     using System.Drawing;
     using System.Runtime.InteropServices;
     using System.Windows.Forms;
-    using System.Diagnostics;
     using GameSense.Animation;
     using SharpLog;
 

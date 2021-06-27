@@ -48,9 +48,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Gma.System.MouseKeyHook, Version=5.6.130.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\MouseKeyHook.5.6.0\lib\net40\Gma.System.MouseKeyHook.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -69,20 +66,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\GameSense\GameSense.csproj">
-      <Project>{2f4b5ce1-d11c-4179-a47a-7d0fd14eb7ba}</Project>
-      <Name>GameSense</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SharpLog\SharpLog.csproj">
-      <Project>{5b62700c-1d84-49d0-bb41-6e6ca74ee767}</Project>
-      <Name>SharpLog</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.8">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4.8 %28x86 and x64%29</ProductName>
@@ -93,6 +76,21 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\SharpLog\SharpLog.csproj">
+      <Project>{5b62700c-1d84-49d0-bb41-6e6ca74ee767}</Project>
+      <Name>SharpLog</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GameSense\GameSense.csproj">
+      <Project>{2f4b5ce1-d11c-4179-a47a-7d0fd14eb7ba}</Project>
+      <Name>GameSense</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="MouseKeyHook">
+      <Version>5.6.0</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

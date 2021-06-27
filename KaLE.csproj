@@ -12,6 +12,21 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -50,41 +65,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GameSense\Animation\ColorManipulation.cs" />
-    <Compile Include="GameSense\Animation\IKeyAnimator.cs" />
-    <Compile Include="GameSense\Animation\IMouseAnimator.cs" />
-    <Compile Include="GameSense\Animation\IMousePadAnimator.cs" />
-    <Compile Include="GameSense\Struct\Request\Color.cs" />
-    <Compile Include="GameSense\Struct\Request\ColorHandler.cs" />
-    <Compile Include="GameSense\Struct\Request\ColorHandlerGradient.cs" />
-    <Compile Include="GameSense\Struct\CoreProps.cs" />
-    <Compile Include="GameSense\Frame.cs" />
-    <Compile Include="GameSense\Controller.cs" />
-    <Compile Include="GameSense\KeyboardFrameManager.cs" />
-    <Compile Include="GameSense\GSJsonNamingPolicy.cs" />
-    <Compile Include="GameSense\Struct\Request\EventBinder.cs" />
-    <Compile Include="GameSense\Struct\Request\Handler.cs" />
-    <Compile Include="GameSense\Animation\IKeyboardAnimator.cs" />
-    <Compile Include="GameSense\InputManager.cs" />
-    <Compile Include="Logging\Logger.cs" />
-    <Compile Include="Logging\LoggerType.cs" />
-    <Compile Include="Logging\MassLogger.cs" />
-    <Compile Include="KaLE\Program.cs" />
-    <Compile Include="GameSense\GameSense.Key.cs" />
-    <Compile Include="GameSense\Animation\KeyboardGradient.cs" />
-    <Compile Include="GameSense\Animation\AnimationKeyboardTest.cs">
-      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
-    </Compile>
-    <Compile Include="GameSense\Animation\KeyFade.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="GameSense\Transmitter.cs" />
-    <Compile Include="GameSense\Struct\Request\BaseRequest.cs" />
-    <Compile Include="GameSense\Struct\Request\RequestData.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\GameSense\GameSense.csproj">
+      <Project>{2f4b5ce1-d11c-4179-a47a-7d0fd14eb7ba}</Project>
+      <Name>GameSense</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SharpLog\SharpLog.csproj">
+      <Project>{5b62700c-1d84-49d0-bb41-6e6ca74ee767}</Project>
+      <Name>SharpLog</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.8">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.8 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

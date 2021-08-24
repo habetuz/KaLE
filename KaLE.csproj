@@ -78,18 +78,14 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\SharpLog\SharpLog.csproj">
-      <Project>{5b62700c-1d84-49d0-bb41-6e6ca74ee767}</Project>
-      <Name>SharpLog</Name>
-    </ProjectReference>
     <ProjectReference Include="..\GameSense\GameSense.csproj">
       <Project>{2f4b5ce1-d11c-4179-a47a-7d0fd14eb7ba}</Project>
       <Name>GameSense</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="MouseKeyHook">
-      <Version>5.6.0</Version>
+    <PackageReference Include="MarvinFuchs.SharpLog">
+      <Version>2.2.0</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -38,16 +38,16 @@ namespace KaLE
         private static void Main(string[] args)
         {
             ShowWindow(Window, SwHide);
-            Logger.Log("Program started. Welcome.", LoggerType.Info);
+            Logger.Log("Program started. Welcome.", LogType.Info);
 
-            GameSense.Controller.Background = new KeyboardGradient(new int[] { 255, 85, 0 }, new int[] { 0, 196, 255 }, 4, 2);
-            GameSense.Controller.MouseAnimation = new MouseGradient(5, 7);
+            GameSense.Controller.KeyboardBackground = new KeyboardGradient(new int[] { 255, 85, 0 }, new int[] { 0, 196, 255 }, 4, 2);
+            GameSense.Controller.MouseBackground = new MouseGradient(5, 7);
             GameSense.Controller.DefaultKeyAnimation = new KeyFade();
             GameSense.Controller.GameName = "KALE";
             GameSense.Controller.GameDisplayName = "KaLE";
             GameSense.Controller.Developer = "Marvin Fuchs";
 
-            // Create notify icon
+            // Copy notify icon
             NotifyIcon notifyIcon = new NotifyIcon();
             notifyIcon.Text = "KaLE";
             notifyIcon.Icon = SystemIcons.Application;

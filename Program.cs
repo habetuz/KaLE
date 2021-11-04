@@ -61,6 +61,7 @@ namespace KaLE
                 else
                 {
                     ShowWindow(Window, SwShow);
+                    SetForegroundWindow(Window);
                 }
 
                 visible = !visible;
@@ -77,5 +78,9 @@ namespace KaLE
 
         [DllImport("user32.dll")]
         private static extern bool ShowWindow(IntPtr window, int comand);
+
+        [DllImport("user32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        static extern bool SetForegroundWindow(IntPtr window);
     }
 }
